@@ -4,15 +4,35 @@
   <meta charset="utf-8">
   <title>斜杠命令提示词</title>
   <style>
+    :root {
+      --bg: #e8e8e8;
+      --card-bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #999;
+      --border: #eee;
+      --selected-bg: #e8eef9;
+      --selected-text: #1a1a1a;
+      --tag-bg: #f0f0f0;
+      --tag-text: #888;
+      --primary: #1a1a1a;
+      --primary-hover: #333;
+      --control-bg: #f1f1f3;
+      --control-hover: #e8e8e8;
+      --danger: #ff4444;
+      --danger-hover: #e03030;
+      --focus-ring: rgba(26, 26, 26, 0.12);
+    }
+
     body {
       width: 350px;
       max-height: 500px;
       min-height: 360px;
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       padding: 15px;
       margin: 0;
       overflow-y: auto;
-      background-color: #f5f7fa;
+      background-color: var(--bg);
+      color: var(--text);
     }
     
     .search-container {
@@ -22,10 +42,24 @@
     .search-input {
       width: 100%;
       padding: 10px 15px;
-      border: 1px solid #ddd;
+      border: 1.5px solid transparent;
       border-radius: 8px;
       font-size: 14px;
       box-sizing: border-box;
+      background: #f3f3f5;
+      color: var(--text);
+      outline: none;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input::placeholder {
+      color: #bbb;
+    }
+
+    .search-input:focus {
+      background: #efefef;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--focus-ring);
     }
     
     .action-buttons {
@@ -37,8 +71,8 @@
     
     .add-button, .export-button, .import-button {
       padding: 10px 15px;
-      background-color: #4285f4;
-      color: white;
+      background-color: var(--control-bg);
+      color: #555;
       text-align: center;
       border: none;
       border-radius: 8px;
@@ -47,10 +81,16 @@
       flex: 1;
       min-width: 0;
       box-sizing: border-box;
+      font-weight: 600;
+      transition: background 0.15s, transform 0.05s;
     }
     
     .add-button:hover, .export-button:hover, .import-button:hover {
-      background-color: #3b78e7;
+      background-color: var(--control-hover);
+    }
+
+    .add-button:active, .export-button:active, .import-button:active {
+      transform: translateY(1px);
     }
     
     /* Mode下拉菜单样式 */
@@ -66,7 +106,7 @@
 
     .mode-button {
       padding: 10px 15px;
-      background-color: #4285f4;
+      background-color: var(--primary);
       color: white;
       text-align: center;
       border: none;
@@ -80,10 +120,16 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
+      font-weight: 600;
+      transition: background 0.15s, transform 0.05s;
     }
 
     .mode-button:hover {
-      background-color: #3b78e7;
+      background-color: var(--primary-hover);
+    }
+
+    .mode-button:active {
+      transform: translateY(1px);
     }
 
     .mode-dropdown-content {
@@ -92,10 +138,10 @@
       top: calc(100% + 5px);
       left: 0;
       right: 0;
-      background: white;
-      border: 1px solid #ddd;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
       z-index: 1000;
       box-sizing: border-box;
     }
@@ -107,12 +153,14 @@
     .mode-dropdown-item {
       padding: 10px 15px;
       cursor: pointer;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       overflow: hidden;
       box-sizing: border-box;
+      background: var(--card-bg);
+      transition: background-color 0.12s ease;
     }
 
     .mode-dropdown-item:last-child {
@@ -124,9 +172,9 @@
     }
 
     .add-mode-item {
-      background-color: #f8f9fa;
+      background-color: #f6f6f7;
       font-weight: bold;
-      color: #4285f4;
+      color: var(--primary);
     }
 
     .add-mode-input {
@@ -145,7 +193,7 @@
 
     .add-mode-input button {
       padding: 6px 12px;
-      background-color: #4285f4;
+      background-color: var(--primary);
       color: white;
       border: none;
       border-radius: 4px;
@@ -154,7 +202,7 @@
     }
 
     .selected-indicator {
-      color: #4285f4;
+      color: var(--selected-text);
       font-weight: bold;
     }
 
@@ -171,15 +219,21 @@
     .prompt-item {
       position: relative;
       display: flex;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--border);
       padding: 10px;
       justify-content: space-between;
       align-items: center;
+      background: transparent;
+      transition: background 0.15s;
+    }
+
+    .prompt-item:hover {
+      background: #f5f5f5;
     }
 
     /* 键盘导航选中高亮 */
     .prompt-item.selected {
-      background-color: #e8f0fe;
+      background-color: var(--selected-bg);
       border-radius: 6px;
     }
 
@@ -200,7 +254,7 @@
     }
     
     .pinned-button:hover {
-      color: #1890ff;
+      color: var(--primary);
     }
     
     .prompt-info {
@@ -210,6 +264,7 @@
     .prompt-name {
       font-weight: bold;
       font-size: 16px;
+      color: var(--text);
     }
     
     .prompt-content {
@@ -222,17 +277,27 @@
     }
     
     .button {
-      background-color: #4285f4;
-      color: white;
+      background-color: var(--control-bg);
+      color: #555;
       border: none;
       padding: 8px 12px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 14px;
+      transition: background 0.15s;
     }
     
     .button:hover {
-      background-color: #3b78e7;
+      background-color: var(--control-hover);
+    }
+
+    .button.danger {
+      background-color: var(--danger);
+      color: #fff;
+    }
+
+    .button.danger:hover {
+      background-color: var(--danger-hover);
     }
     
     .form-group {
@@ -249,9 +314,19 @@
       width: 100%;
       padding: 10px;
       box-sizing: border-box;
-      border: 1px solid #ddd;
+      border: 1.5px solid var(--border);
       border-radius: 6px;
       font-size: 14px;
+      background: #fafafa;
+      color: var(--text);
+      outline: none;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--focus-ring);
     }
     
     textarea {
@@ -268,17 +343,26 @@
     
     .form-button {
       padding: 10px 15px;
-      background-color: #4285f4;
+      background-color: var(--primary);
       color: white;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-size: 14px;
+      transition: background 0.15s;
+    }
+
+    .form-button:hover {
+      background-color: var(--primary-hover);
     }
     
     .form-button.cancel {
-      background-color: #f1f1f1;
-      color: #333;
+      background-color: var(--control-bg);
+      color: #555;
+    }
+
+    .form-button.cancel:hover {
+      background-color: var(--control-hover);
     }
     
     .hidden {
@@ -290,7 +374,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(26, 26, 26, 0.9);
       color: white;
       padding: 8px 16px;
       border-radius: 4px;
@@ -314,15 +398,31 @@
       justify-content: center;
       align-items: center;
       min-height: 100px;
-      border: 1px dashed #ccc;
+      border: 1px dashed #ddd;
       border-radius: 8px;
       margin-top: 20px;
     }
     
     #prompts-list:empty::after {
       content: '暂无提示词，请添加或导入';
-      color: #999;
+      color: #bbb;
       font-size: 16px;
+    }
+
+    .donate-container {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+    }
+
+    .donate-container a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
   </style>
 </head>
@@ -381,8 +481,8 @@
 
   <script src="popup.js"></script>
   
-  <div class="donate-container" style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
-    <a href="donate.html" style="color: #4285f4; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 5px;">
+  <div class="donate-container">
+    <a href="donate.html">
       🧋如果您喜欢这个插件，欢迎请我喝杯奶茶！
     </a>
   </div>

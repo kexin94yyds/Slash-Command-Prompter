@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 添加悬停效果
       pinButton.addEventListener('mouseenter', () => {
-        pinButton.style.color = '#1890ff';
+        pinButton.style.color = '#1a1a1a';
       });
       pinButton.addEventListener('mouseleave', () => {
         pinButton.style.color = '#999';
@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const editBtn = document.createElement('button');
       editBtn.textContent = '编辑';
       editBtn.style.cssText = `
-        background-color: #4285f4;
-        color: white;
+        background-color: #e8e8e8;
+        color: #555;
         border: none;
         border-radius: 6px;
         padding: 8px 12px;
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = '删除';
       deleteBtn.style.cssText = `
-        background-color: #f44336;
+        background-color: #ff4444;
         color: white;
         border: none;
         border-radius: 6px;
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       const deleteButton = document.createElement('button');
-      deleteButton.className = 'button';
+      deleteButton.className = 'button danger';
       deleteButton.textContent = '删除';
       deleteButton.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
     editInput.style.cssText = `
       font-size: 16px;
       font-weight: bold;
-      border: 1px solid #4285f4;
+      border: 1px solid #1a1a1a;
       border-radius: 3px;
       padding: 2px 4px;
       outline: none;
@@ -830,7 +830,7 @@ document.addEventListener('DOMContentLoaded', function() {
     deleteAllButton = document.createElement('button');
     deleteAllButton.textContent = '清空';
     deleteAllButton.style.padding = '10px 15px';
-    deleteAllButton.style.backgroundColor = '#f44336';
+    deleteAllButton.style.backgroundColor = '#ff4444';
     deleteAllButton.style.color = 'white';
     deleteAllButton.style.border = 'none';
     deleteAllButton.style.borderRadius = '4px';
@@ -840,8 +840,8 @@ document.addEventListener('DOMContentLoaded', function() {
     cancelImportButton = document.createElement('button');
     cancelImportButton.textContent = '取消';
     cancelImportButton.style.padding = '10px 15px';
-    cancelImportButton.style.backgroundColor = '#f1f1f1';
-    cancelImportButton.style.color = '#333';
+    cancelImportButton.style.backgroundColor = '#f1f1f3';
+    cancelImportButton.style.color = '#555';
     cancelImportButton.style.border = 'none';
     cancelImportButton.style.borderRadius = '4px';
     cancelImportButton.style.cursor = 'pointer';
@@ -850,7 +850,7 @@ document.addEventListener('DOMContentLoaded', function() {
     importButton2 = document.createElement('button');
     importButton2.textContent = '导入';
     importButton2.style.padding = '10px 15px';
-    importButton2.style.backgroundColor = '#4285f4';
+    importButton2.style.backgroundColor = '#1a1a1a';
     importButton2.style.color = 'white';
     importButton2.style.border = 'none';
     importButton2.style.borderRadius = '4px';
@@ -994,8 +994,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // 添加导入按钮样式
   function styleImportButton() {
     importButton.style.padding = '10px 15px';
-    importButton.style.backgroundColor = '#4285f4';
-    importButton.style.color = 'white';
+    importButton.style.backgroundColor = '#f1f1f3';
+    importButton.style.color = '#555';
     importButton.style.textAlign = 'center';
     importButton.style.border = 'none';
     importButton.style.borderRadius = '8px';
@@ -1150,8 +1150,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const modeName = modes.find(m => m.id === (prompt.modeId || 'default'))?.name || 'Mode';
       modeTag.style.cssText = `
         display: inline-block;
-        background-color: #e8f0fe;
-        color: #1a73e8;
+        background-color: #f0f0f0;
+        color: #888;
         padding: 2px 8px;
         border-radius: 12px;
         font-size: 12px;
@@ -1204,7 +1204,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 删除按钮
       const deleteButton = document.createElement('button');
-      deleteButton.className = 'button';
+      deleteButton.className = 'button danger';
       deleteButton.textContent = '删除';
       deleteButton.addEventListener('click', function(e) {
         e.stopPropagation();
