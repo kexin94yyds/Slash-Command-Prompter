@@ -9,9 +9,10 @@ const popupJs = fs.readFileSync(path.join(root, 'popup.js'), 'utf8');
 
 test('popup uses the Prompter neutral theme tokens', () => {
   assert.match(popupHtml, /--bg:\s*#e8e8e8/);
-  assert.match(popupHtml, /--primary:\s*#1a1a1a/);
-  assert.match(popupHtml, /--control-bg:\s*#f1f1f3/);
-  assert.match(popupHtml, /--control-hover:\s*#e8e8e8/);
+  assert.match(popupHtml, /--primary:\s*#2563eb/);
+  assert.match(popupHtml, /--primary-hover:\s*#1d4ed8/);
+  assert.match(popupHtml, /--control-bg:\s*#eff6ff/);
+  assert.match(popupHtml, /--control-hover:\s*#dbeafe/);
 });
 
 test('mode, export, and import controls use the Prompter control classes', () => {

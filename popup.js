@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 添加悬停效果
       pinButton.addEventListener('mouseenter', () => {
-        pinButton.style.color = '#1a1a1a';
+        pinButton.style.color = '#2563eb';
       });
       pinButton.addEventListener('mouseleave', () => {
         pinButton.style.color = '#999';
@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const editBtn = document.createElement('button');
       editBtn.textContent = '编辑';
       editBtn.style.cssText = `
-        background-color: #e8e8e8;
-        color: #555;
+        background-color: #eff6ff;
+        color: #2563eb;
         border: none;
         border-radius: 6px;
         padding: 8px 12px;
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
     editInput.style.cssText = `
       font-size: 16px;
       font-weight: bold;
-      border: 1px solid #1a1a1a;
+      border: 1px solid #2563eb;
       border-radius: 3px;
       padding: 2px 4px;
       outline: none;
@@ -850,7 +850,7 @@ document.addEventListener('DOMContentLoaded', function() {
     importButton2 = document.createElement('button');
     importButton2.textContent = '导入';
     importButton2.style.padding = '10px 15px';
-    importButton2.style.backgroundColor = '#1a1a1a';
+    importButton2.style.backgroundColor = '#2563eb';
     importButton2.style.color = 'white';
     importButton2.style.border = 'none';
     importButton2.style.borderRadius = '4px';
@@ -994,8 +994,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // 添加导入按钮样式
   function styleImportButton() {
     importButton.style.padding = '10px 15px';
-    importButton.style.backgroundColor = '#f1f1f3';
-    importButton.style.color = '#555';
+    importButton.style.backgroundColor = '#eff6ff';
+    importButton.style.color = '#2563eb';
     importButton.style.textAlign = 'center';
     importButton.style.border = 'none';
     importButton.style.borderRadius = '8px';
@@ -1150,8 +1150,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const modeName = modes.find(m => m.id === (prompt.modeId || 'default'))?.name || 'Mode';
       modeTag.style.cssText = `
         display: inline-block;
-        background-color: #f0f0f0;
-        color: #888;
+        background-color: #eff6ff;
+        color: #2563eb;
         padding: 2px 8px;
         border-radius: 12px;
         font-size: 12px;
